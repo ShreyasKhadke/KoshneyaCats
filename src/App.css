@@ -171,6 +171,11 @@ h1 {
 
 /* Responsive adjustment */
 @media (max-width: 800px) {
+  .app-container {
+    padding-bottom: 80px;
+    /* Space for cat bar */
+  }
+
   .timer-card {
     padding: 2rem 1.5rem;
     margin: 1rem 0;
@@ -186,52 +191,52 @@ h1 {
     margin-bottom: 2rem;
   }
 
-  .cat-decoration {
-    opacity: 0.3;
-    /* Fade them out a bit on mobile so they don't distract */
-    pointer-events: none;
-    /* Let clicks pass through if they do overlap significantly */
+  /* Mobile Cat Bar */
+  .cat-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
   }
 
-  /* Keep cats clickable if they are theme switchers? 
-     Wait, the cats convert themes. Making them pointer-events: none breaks functionality.
-     Let's keep pointer-events: auto but Ensure they are strictly behind OR
-     Move them to the bottom/top explicitly.
-  */
   .cat-decoration {
-    pointer-events: auto;
+    position: static;
+    transform: none !important;
+    animation: none !important;
+    width: 50px;
+    height: auto;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .cat-decoration:hover,
+  .cat-decoration:active {
     opacity: 1;
+    transform: scale(1.2) !important;
+    z-index: 101;
   }
 
-  .cat-1 {
-    width: 100px;
-    left: -20px;
-    bottom: 20px;
-  }
-
-  .cat-2 {
-    width: 90px;
-    right: -10px;
-    top: 10px;
-  }
-
-  .cat-3 {
-    text-align: right;
-    width: 80px;
-    right: 10px;
-    bottom: -30px;
-    /* Push down */
-  }
-
-  .cat-4 {
-    width: 80px;
-    left: 10px;
-    top: 60px;
-  }
-
+  /* Reset individual positions */
+  .cat-1,
+  .cat-2,
+  .cat-3,
+  .cat-4,
   .cat-5 {
-    width: 80px;
-    top: -30px;
+    position: static;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
   }
 }
 

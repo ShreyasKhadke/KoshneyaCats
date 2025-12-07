@@ -6,7 +6,7 @@ import pinkCat from '../assets/pink.png'
 
 const CatDecoration = ({ setTheme, playMeow }) => {
     return (
-        <>
+        <div className="cat-container">
             <img
                 src={creamCat} alt="Cream Cat" className="cat-decoration cat-1"
                 onClick={() => { setTheme('cream'); playMeow(); }}
@@ -32,7 +32,7 @@ const CatDecoration = ({ setTheme, playMeow }) => {
                 onClick={() => { setTheme('rose'); playMeow(); }}
                 title="Rose Theme"
             />
-        </>
+        </div>
     );
 };
 
