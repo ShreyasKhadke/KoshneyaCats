@@ -1,7 +1,8 @@
 .app-container {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
+  /* changed from height: 100vh to allow scrolling */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -9,6 +10,10 @@
   z-index: 1;
   gap: 2rem;
   flex-wrap: wrap;
+  padding: 2rem 1rem;
+  /* Add padding for mobile vertical spacing */
+  overflow-x: hidden;
+  /* Prevent horizontal scroll from flying cats */
 }
 
 .timer-card {
@@ -17,7 +22,8 @@
   border-radius: 30px;
   box-shadow: var(--shadow);
   text-align: center;
-  z-index: 10;
+  z-index: 20;
+  /* Higher than cats */
   position: relative;
   width: 90%;
   max-width: 500px;
@@ -46,6 +52,7 @@ h1 {
   display: flex;
   gap: 1.5rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -71,7 +78,14 @@ h1 {
   border: 1px solid var(--primary);
 }
 
-/* Cats Positioning & Animation */
+.btn-small {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+}
+
 .cat-decoration {
   position: absolute;
   pointer-events: auto;
@@ -79,13 +93,14 @@ h1 {
   cursor: pointer;
   transition: opacity 0.5s ease, transform 0.3s ease;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
-  z-index: 15;
-  /* Ensure cats are above cards if they overlap */
+  z-index: 10;
+  /* Lower than cards (20) */
 }
 
 .cat-decoration:hover {
   transform: scale(1.1) rotate(5deg);
-  z-index: 20;
+  z-index: 25;
+  /* Pop over everything on hover */
 }
 
 @keyframes float {
@@ -150,37 +165,83 @@ h1 {
   transform: translateX(-50%);
   width: 130px;
   z-index: 5;
-  /* Peek from behind the card or top of screen */
+  /* Behind even other cats */
   animation: float 6s ease-in-out infinite 2s;
 }
 
-/* Responsive adjustment for many cats */
+/* Responsive adjustment */
 @media (max-width: 800px) {
+  .timer-card {
+    padding: 2rem 1.5rem;
+    margin: 1rem 0;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .time-display {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .cat-decoration {
+    opacity: 0.3;
+    /* Fade them out a bit on mobile so they don't distract */
+    pointer-events: none;
+    /* Let clicks pass through if they do overlap significantly */
+  }
+
+  /* Keep cats clickable if they are theme switchers? 
+     Wait, the cats convert themes. Making them pointer-events: none breaks functionality.
+     Let's keep pointer-events: auto but Ensure they are strictly behind OR
+     Move them to the bottom/top explicitly.
+  */
+  .cat-decoration {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
   .cat-1 {
-    width: 120px;
-    left: 0;
-    bottom: 0;
+    width: 100px;
+    left: -20px;
+    bottom: 20px;
   }
 
   .cat-2 {
-    width: 110px;
-    right: 0;
-    top: 0;
+    width: 90px;
+    right: -10px;
+    top: 10px;
   }
 
   .cat-3 {
-    width: 100px;
-    right: 20%;
-    bottom: -10px;
+    text-align: right;
+    width: 80px;
+    right: 10px;
+    bottom: -30px;
+    /* Push down */
   }
 
   .cat-4 {
-    width: 90px;
-    left: 0;
-    top: 10%;
+    width: 80px;
+    left: 10px;
+    top: 60px;
   }
 
   .cat-5 {
-    width: 100px;
+    width: 80px;
+    top: -30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .time-display {
+    font-size: 3rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
   }
 }

@@ -52,8 +52,8 @@ const Countdown = ({ playMeow }) => {
                 {formatTime(countdownTime)}
             </div>
             <div className="controls" style={{ marginBottom: '1rem' }}>
-                <button className="btn" style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', background: 'var(--primary)', color: 'var(--white)' }} onClick={() => handleAddTime(1)}>+1m</button>
-                <button className="btn" style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', background: 'var(--primary)', color: 'var(--white)' }} onClick={() => handleAddTime(5)}>+5m</button>
+                <button className="btn btn-small" onClick={() => handleAddTime(1)}>+1m</button>
+                <button className="btn btn-small" onClick={() => handleAddTime(5)}>+5m</button>
             </div>
             <div className="controls">
                 {!isCountdownRunning ? (
