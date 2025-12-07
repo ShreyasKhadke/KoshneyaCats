@@ -3,6 +3,7 @@ import neonCat from '../assets/neon.png'
 import greenCat from '../assets/green.png'
 import orangeCat from '../assets/orange.png'
 import pinkCat from '../assets/pink.png'
+import sageCat from '../assets/sage.png'
 
 const CatDecoration = ({ setTheme, playMeow }) => {
     return (
@@ -31,6 +32,11 @@ const CatDecoration = ({ setTheme, playMeow }) => {
                 src={pinkCat} alt="Pink Cat" className="cat-decoration cat-5"
                 onClick={() => { setTheme('rose'); playMeow(); }}
                 title="Rose Theme"
+            />
+            <img
+                src={sageCat} alt="Sage Cat" className="cat-decoration cat-6"
+                onClick={() => { setTheme('sage'); playMeow(); }}
+                title="Sage Theme"
             />
         </div>
     );
